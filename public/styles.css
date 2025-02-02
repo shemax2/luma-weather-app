@@ -1,0 +1,41 @@
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    height: 100%;
+}
+
+/* Wrappers */
+.wrapper{
+    width: 66.67vw;
+}
+
+#header-wrapper{
+    background-color: green;
+    height: clamp(12vh, 16.11vh, 20vh);
+}
+
+#middle-wrapper{
+    background-color: blue;
+    height: 38.44vh;
+}
+
+#footer-wrapper{
+    background-color: gold;
+    height: 45.44vh;
+}
+
+/* Medium and smaller screens */
+@media (max-width: 961px){
+    .wrapper{
+        width: 100%;
+    }   
+}

@@ -6,7 +6,7 @@ const PORT = 3000;
 app.set('view engine', 'ejs');
 
 // Serve static files from he "public" folder
-app.use(express.static('pblic'));
+app.use(express.static('public'));
 
 // Define routes
 app.get('/', (req,res) => {
