@@ -11,6 +11,19 @@ body{
     align-items: center;
     min-height: 100vh;
     height: 100%;
+
+    /* font */  
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+h1,h2{
+    font-weight: 600;
+}
+
+p{
+    font-weight: 300;
 }
 
 /* Wrappers */
@@ -19,8 +32,9 @@ body{
 }
 
 #header-wrapper{
-    background-color: green;
     height: clamp(12vh, 16.11vh, 20vh);
+    display: flex;
+    justify-content: space-between;
 }
 
 #middle-wrapper{
@@ -33,7 +47,41 @@ body{
     height: 45.44vh;
 }
 
+/* Header */
+.header-left{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    margin-left: 3.13vw;
+}
+
+.profile{
+    width: 3.81vw;
+    height: 3.81vw;
+    border-radius: 50%;
+}
+
+.greetings{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.greeting-hello,.greeting-name {
+    font-size: 2.78vh;
+}
+
+.greeting-hello {
+    font-weight: 450;
+}
+
+.greeting-name{
+    font-weight: 550;
+}
+
 /* Medium and smaller screens */
+
+/* Wrappers */
 @media (max-width: 961px){
     .wrapper{
         width: 100%;

@@ -4,11 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luma Weather</title>
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+     <!-- CSS -->
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header id="header-wrapper" class="wrapper">
         <!-- Header content -->
+         <div class="header-left">
+            <img src="/images/profile.png" alt="profile image" class="profile">
+            <div class="greetings">
+              <span class="greeting-hello">Hello,</span>
+              <span class="greeting-name">My little Princess</span>  
+            </div>
+         </div>
+
+         <div class="header-right">
+            <input type="text" class="search-location" placeholder="Search for location">
+            <button surprise-button>Surprise</button>
+         </div>
     </header>
 
     <main id="middle-wrapper" class="wrapper">
