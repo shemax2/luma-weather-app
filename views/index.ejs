@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
      <!-- CSS -->
     <link rel="stylesheet" href="/styles.css">
 </head>
@@ -23,7 +25,12 @@
          </div>
 
          <div class="header-right">
-            <input type="text" class="search-location" placeholder="Search for location">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for location">
+                <button class="search-icon-btn">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+            </div>
             <button surprise-button>Surprise</button>
          </div>
     </header>

@@ -79,6 +79,47 @@ p{
     font-weight: 550;
 }
 
+.header-right{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    margin-right: 3.13vw;
+}
+
+.search-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 18.89vw;
+    height: 5vh;
+    background-color: #F5F5F5;
+    padding: 0 1.39vw;
+    border-radius: 1.04vw;
+}
+
+.search-input{
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1.6vh;
+}
+
+.search-icon-btn {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 5vh;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.search-icon-btn .material-symbols-outlined {
+    font-size: 1.5rem;
+    color: #7b0323;
+}
+
 /* Medium and smaller screens */
 
 /* Wrappers */
