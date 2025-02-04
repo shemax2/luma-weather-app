@@ -1,5 +1,7 @@
 const express = require('express');
 const axios = require('axios');
+require('dotenv').config();
+
 const app = express();
 const PORT = 3000;
 
@@ -16,25 +18,41 @@ app.get('/', (req,res) => {
 
 // Weather route
 app.get('/weather', async (req, res) => {
-    const city = req.query.city;
-
-    if (!city){
-        return res.status(400).json({ error: 'City name is required'});
-    }
+    const { city } = req.query.city;
+    const apiKey = process.env.API_KEY;
 
     try{
-        // Get geolocation for the city
-        const geoResponse = await axios.get(`https://geocode.xyz/${city}?json=1`);
-        const { latt, longt} = geoResponse.data;
+        // Get latitude and longitide for the city
+        const geocodeUrl = `https://api.openCagedata.com/geocode/v1/json`;
+        const geocodeResponse = await axios.get(geocodeUrl, {
+            params: {
+                q:city,
+                key:apiKey,
+                limit:1,
+            },
+        });
 
-        // Get weather data
-        const weatherResponse = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latt}&longitude=${longt}&current_weather=true`);
+        if (geocodeResponse.data.results.length === 0) {
+            return res.status(404).send('City not found');
+        }
+
+        const { lat, lng } = geocodeResponse.data.results[0].geometry;
+
+        // Fetch weather data based on coordinates
+        const weatherUrl = 'https://api.open-meteo.com/v1/forecast';
+        const weatherResponse = await axios.get(weatherUrl, {
+            params: {
+                latitude: lat,
+                longitude: lng,
+                current_weather: true,
+            },
+        });
+
         const temperature = weatherResponse.data.current_weather.temperature;
-
         res.json({ city, temperature });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error:'Failed to fetch weather data' });
+        console.error('Error fetching data:', error.message);
+        res.status(500).send('Internal Server Error');
     }
 });
 
