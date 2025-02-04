@@ -18,17 +18,17 @@ app.get('/', (req,res) => {
 
 // Weather route
 app.get('/weather', async (req, res) => {
-    const { city } = req.query.city;
+    const { city } = req.query;
     const apiKey = process.env.API_KEY;
 
     try{
         // Get latitude and longitide for the city
-        const geocodeUrl = `https://api.openCagedata.com/geocode/v1/json`;
+        const geocodeUrl = `https://api.opencagedata.com/geocode/v1/json`;
         const geocodeResponse = await axios.get(geocodeUrl, {
             params: {
-                q:city,
-                key:apiKey,
-                limit:1,
+                q: city,
+                key: apiKey,
+                limit: 1,
             },
         });
 
@@ -55,8 +55,6 @@ app.get('/weather', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
-module.exports = app;
 
 // Start the server
 app.listen(PORT, () => {

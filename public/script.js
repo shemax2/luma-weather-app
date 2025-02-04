@@ -4,21 +4,21 @@ const cityInput = document.querySelector('.search-input');
 
 // Event listener for search
 searchButton.addEventListener('click', async () => {
-    const cityName = cityInput.value.trim(); // Grt the city name
-    if (!cityName) {
+    const city = cityInput.value.trim(); // Grt the city name
+    if (!city) {
         console.log('Please enter a city name.');
         return;
     }
 
     try {
-        // Fetch weather data from the server
-        const response = await fetch(`/weather?city=${cityName}`);
-        const data = await response.json();
+       // Send a GET request with the city name to the server
+       const response = await axios.get('/weather', { params: { city } });
 
-        //Log the city and temperature
-        console.log(`City: ${data.city}`);
-        console.log(`Temperature: ${data.temperature}`);
+       // Extract and log the city and temperature in the console
+       const { city: returnedCity, temperature } = response.data;
+       console.log(`City: ${returnedCity}, Temperature: ${temperature}°C`); 
     } catch (error) {
-        console.error('Error fetching weather data:', error);
+        console.error("Error fetching weather data:", error.message);
+        alert("Someting went wrong");
     }
 });
