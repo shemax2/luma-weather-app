@@ -105,7 +105,7 @@ p{
     font-size: 1.6vh;
 }
 
-.search-icon-btn {
+#search-button {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -115,7 +115,7 @@ p{
     background-color: transparent;
 }
 
-.search-icon-btn .material-symbols-outlined {
+#search-button .material-symbols-outlined {
     font-size: 1.5rem;
     color: #7b0323;
 }
