@@ -25,7 +25,7 @@ searchButton.addEventListener('click', async () => {
     }
 });
 
-// Header Surprise Button functionality
+// Get elements for Surprise Me button and popup
 const surpriseButton = document.getElementById('surprise-btn');
 const popup = document.getElementById('popup');
 const closePopup = document.getElementById('close-popup');
@@ -33,22 +33,21 @@ const quoteElement = document.getElementById('quote');
 
 surpriseButton.addEventListener('click', async () => {
     try{
-        //Fetch love quote from API
-        const response = await fetch('https://api.api-ninjas.com/v1/quotes?category=love', {
-            method: 'GET',
-            headers: {
-                'X-Api-Key': 'TkrD08VqsryRjMedKF4WAg==wfcGfIX7RkusmeUh'
-            }
-        });
+        //Fetch love letter from server.js '/surprise' route
+        const response = await fetch('/surprise');
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch love letter');
+        }
 
         const data = await response.json();
-        const quote = data[0]?.quote || 'Love you, my LIttle Banana!';
+        const loveLetter = data.loveLetter || 'Love you, my Little Banana!';
 
         //Display the quote in the popup
-        quoteElement.textContent = quote;
+        quoteElement.textContent = loveLetter;
         popup.style.display = 'block';
     } catch (error){
-        console.error('Error fetching quote:', error);
+        console.error('Error fetching love letter:', error);
         popup.style.display = 'none';
     }
 });
