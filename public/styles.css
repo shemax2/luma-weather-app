@@ -120,6 +120,59 @@ p{
     color: #7b0323;
 }
 
+#search-button .material-symbols-outlined:active {
+    animation: bounce 0.4s ease;
+    color: #fc735a;
+}
+@keyframes bounce {
+    0% {
+        transform: scale(0.9) translateY(0);
+    }
+    50% {
+        transform: scale(1.1) translateY(-1.5px);    
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+#surprise-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+    border: 0.2vw solid #F5F5F5 ;
+    background-color: transparent;
+}
+
+#surprise-btn .material-symbols-outlined {
+    font-size: 1.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    color: rgb(66, 66, 66);
+}
+
+#surprise-btn:hover{
+    background-color: #7b0323;
+}
+
+#surprise-btn .material-symbols-outlined:hover {
+    color: #fc735a;
+}
+
+#surprise-btn:active {
+    background-color: #9c4159;
+    transform: scale(0.85);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#surprise-btn .material-symbols-outlined:active {
+    color: #d4b2ab;
+    transform: scale(0.7);
+}
+
 /* Style for the popup */
 .popup {
     display: none;
@@ -127,8 +180,8 @@ p{
     left: 0;
     top: 0;
     z-index: 1;
-    width: 70%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
