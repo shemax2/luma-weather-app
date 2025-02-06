@@ -56,6 +56,32 @@ app.get('/weather', async (req, res) => {
     }
 });
 
+
+// Endpoint for generating love letters using Cohere REST API
+app.get('/surprise', async (req,res) => {
+    try{
+        const response = await axios.post('https://api.cohere.ai/v1/generate',
+            {
+            model: 'command',
+            prompt: 'Write a complete, concise, and heartfelt love letter in exactly 100 words. Do not use placeholders or suggest that the text is editable. Address the letter to "My little Princess" or "My sweet Beans" and focus on expressing deep affection, admiration, and gratitude. Avoid addressing the reader directly as if the letter requires further input or response.',
+            max_tokens: 100,
+            temperature: 0.7,
+        },
+    {
+        headers: {
+            Authorization: `Bearer ${process.env.COHERE_API_KEY}`,
+        },
+    }
+    );
+
+        const loveLetter = response.data.generations[0].text.trim();
+        res.json({ loveLetter });
+    } catch (error) {
+        console.error('Error fetching love letter:', error.response?.data || error.message);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
