@@ -28,7 +28,7 @@ p{
 
 /* Wrappers */
 .wrapper{
-    width: 66.67vw;
+    width: 50%;
 }
 
 #header-wrapper{
@@ -51,23 +51,23 @@ p{
     display: flex;
     align-items: center;
     gap: 1vw;
-    margin-left: 3.13vw;
+    margin-left: 2vw;
 }
 
 .profile{
-    width: 3.81vw;
-    height: 3.81vw;
+    width: 3.5vw;
+    height: 3.5vw;
     border-radius: 50%;
 }
 
 .greetings{
     display: flex;
     flex-direction: column;
-    gap: 1vh;
+    gap: 0.8vh;
 }
 
 .greeting-hello,.greeting-name {
-    font-size: 2.78vh;
+    font-size: 2.5vh;
 }
 
 .greeting-hello {
@@ -82,7 +82,7 @@ p{
     display: flex;
     align-items: center;
     gap: 1vw;
-    margin-right: 3.13vw;
+    margin-right: 2vw;
 }
 
 .search-container{
@@ -115,7 +115,7 @@ p{
 }
 
 #search-button .material-symbols-outlined {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #7b0323;
 }
 
@@ -147,7 +147,7 @@ p{
 }
 
 #surprise-btn .material-symbols-outlined {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     transition: all 0.2s ease;
     cursor: pointer;
     color: rgb(66, 66, 66);
@@ -211,15 +211,96 @@ p{
 
 /* middle-wrapper weather-section */
 #weather-section {
-    width: 29.51vw;
-    height: 38.33vh;
-    border-radius: 2.22vh;
+    width: 22vw;
+    height: 38vh;
+    border-radius: 1.25vw;
     overflow: hidden;
+    position: relative;
 }
 
 .weather-img {
     width: 100%;
     height: auto;
+}
+
+#weather-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: clamp(15px, 1.8vw, 40px);
+    height: clamp(15px, 1.8vw, 40px);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    left: clamp(15px, 1.57vw, 30px);
+    top: clamp(15px, 3.23vh, 30px);
+    background-color: white;
+    font-size: 1.2vw;
+}
+
+.weather-icon {
+    font-size: 2.5vh;
+    color: #7b0323;
+}
+
+.weather-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    color: white;
+    position: absolute;
+    left: 4.18vw;
+    top: 2.5vh;
+}
+
+.city {
+    font-size: 2vh;
+    font-weight: 500;
+    color: white;
+    margin: 0;  
+}
+
+.weather-subtext {
+    font-size: 1.5vh;
+    color: white;
+    margin: 0;
+}
+
+.high-temperature {
+    display: flex;
+    width: 4.71vw;
+    height: 4.31vh;
+    font-size: 2.3vw;
+    position: absolute;
+    top: 5.80vw;
+    left: 2.08vw;
+    color: white;
+}
+
+.low-temperature {
+    color: white;
+    background-color: #462029;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.09vw;
+    height: 2.5vh;
+    position: absolute;
+    top: 6.54vw;
+    left: 6.5vw;
+    padding-left: 10px;
+    border-radius: 25%;
+    font-size: 1.2vh;
+    font-weight: 700;
+}
+
+.weather-description {
+    position: absolute;
+    top: 9.11vw;
+    color: white;
+    left: 2.08vw;
+    font-size: 0.7rem;
+    font-weight: 500;
 }
 
 /* Medium and smaller screens */
