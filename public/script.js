@@ -7,6 +7,9 @@ const cityInput = document.querySelector('.search-input');
 // Event listener for search
 searchButton.addEventListener('click', async () => {
     const city = cityInput.value.trim(); // Grt the city name
+    const weatherTitle = document.querySelector('.city');
+    const highTemperatureValue = document.querySelector('.high-temperature .temperature-value');
+    const lowTemperatureValue = document.querySelector('.low-temperature .temperature-value');
     if (!city) {
         console.log('Please enter a city name.');
         return;
@@ -19,6 +22,9 @@ searchButton.addEventListener('click', async () => {
        // Extract and log the city and temperature in the console
        const { city: returnedCity, temperature } = response.data;
        console.log(`City: ${returnedCity}, Temperature: ${temperature}°C`); 
+       weatherTitle.innerHTML = returnedCity;
+       highTemperatureValue.innerHTML = response.data.highTemperature;
+       lowTemperatureValue.innerHTML = response.data.lowTemperature;
     } catch (error) {
         console.error("Error fetching weather data:", error.message);
         alert("Someting went wrong");
