@@ -44,12 +44,15 @@ app.get('/weather', async (req, res) => {
             params: {
                 latitude: lat,
                 longitude: lng,
-                current_weather: true,
+                hourly: 'temperature_2m',
+                timezone: 'auto',
             },
         });
 
-        const temperature = weatherResponse.data.current_weather.temperature;
-        res.json({ city, temperature });
+        const temperatures = weatherResponse.data.hourly.temperature_2m;
+        const highTemperature = Math.round(Math.max(...temperatures));
+        const lowTemperature = Math.round(Math.min(...temperatures));
+        res.json({ city, highTemperature, lowTemperature });
     } catch (error) {
         console.error('Error fetching data:', error.message);
         res.status(500).send('Internal Server Error');
