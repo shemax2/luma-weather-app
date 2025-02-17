@@ -66,8 +66,8 @@ app.get('/surprise', async (req,res) => {
         const response = await axios.post('https://api.cohere.ai/v1/generate',
             {
             model: 'command',
-            prompt: 'Write a complete, concise, and heartfelt love letter in exactly 100 words. Do not use placeholders or suggest that the text is editable. Address the letter to "My little Princess" or "My sweet Beans" and focus on expressing deep affection, admiration, and gratitude. Avoid addressing the reader directly as if the letter requires further input or response.',
-            max_tokens: 100,
+            prompt: 'Write a complete, concise, and heartfelt love letter in exactly 100 words no more. Do not use placeholders or suggest that the text is editable. Address the letter to "My little Princess" or "My sweet Beans" and focus on expressing deep affection, admiration, and gratitude. Avoid addressing the reader directly as if the letter requires further input or response avoid anyhow message addressing the prompter treat the letter as ready to go as in copy paste ready without editing also dont add anything to edit its not a template but ready to go please avoid placeholders like [your name], [name] or any form of placeholder, also keep in mind that the two lovers are in a distance relationship not writing as if they live together you get the idea but dont focus on the distance as the message just a heads up rather keep it sweet it but avoid mentioning distance just focus on keeping it sweet and ready to go without any form of editing,also avoid that the message itself surpaases 100 words. Thank You.',
+            max_tokens: 105,
             temperature: 0.7,
         },
     {
