@@ -22,6 +22,8 @@ app.get('/weather', async (req, res) => {
     const apiKey = process.env.API_KEY;
 
     try{
+        let latitude, longitude;
+        let cityName = city;
         if (city) {
             // Get latitude and longitide for the city
             const geocodeUrl = `https://api.opencagedata.com/geocode/v1/json`;
@@ -39,8 +41,9 @@ app.get('/weather', async (req, res) => {
 
             const { lat: latitude, lng: longitude } = geocodeResponse.data.results[0].geometry;
         } else if (lat && lon) {
-            var latitude = lat;
-            var longitude = lon;
+            latitude = lat;
+            longitude = lon;
+            cityName = 'Your Location';
         } else {
             return res.status(400).json({ message: "City or coordinates are required" });
         }
@@ -59,7 +62,7 @@ app.get('/weather', async (req, res) => {
         const temperatures = weatherResponse.data.hourly.temperature_2m;
         const highTemperature = Math.round(Math.max(...temperatures));
         const lowTemperature = Math.round(Math.min(...temperatures));
-        res.json({ city, highTemperature, lowTemperature });
+        res.json({ city: cityName, highTemperature, lowTemperature });
     } catch (error) {
         console.error('Error fetching data:', error.message);
         res.status(500).send('Internal Server Error');
