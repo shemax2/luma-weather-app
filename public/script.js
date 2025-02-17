@@ -1,3 +1,5 @@
+// Search bar functionality
+
 // Select elements
 const searchButton = document.getElementById('search-button');
 const cityInput = document.querySelector('.search-input');
@@ -5,19 +7,19 @@ const weatherTitle = document.querySelector('.city');
 const highTemperatureValue = document.querySelector('.high-temperature .temperature-value');
 const lowTemperatureValue = document.querySelector('.low-temperature .temperature-value');
 
-// Reusable function to update the DOM with weather data
+
+//Reusable function to update the DOM with weather data
 const updateWeatherUI = (data) => {
     weatherTitle.innerHTML = data.city;
-    highTemperatureValue.innerHTML = data.highTemperature;
-    lowTemperatureValue.innerHTML = data.lowTemperature;
+       highTemperatureValue.innerHTML = data.highTemperature;
+       lowTemperatureValue.innerHTML = data.lowTemperature;
+
 };
 
-// Reusable function to fetch weather using a query string.
-// The query can be something like "city=Paris" or "lat=48.8566&lon=2.3522"
+//Reusable function to fetch weather using a query string.
 const fetchWeather = async (query) => {
     try {
         const response = await axios.get(`/weather?${query}`);
-        // response.data should include { city, highTemperature, lowTemperature }
         updateWeatherUI(response.data);
         console.log(`City: ${response.data.city}`);
     } catch (error) {
@@ -30,8 +32,7 @@ const fetchWeather = async (query) => {
 const getUserLocationAndFetchWeather = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-            const { latitude, longitude } = position.coords;
-            // Fetch weather using coordinates
+            const { latitude,longitude } = position.coords;
             fetchWeather(`lat=${latitude}&lon=${longitude}`);
         }, (error) => {
             console.error('Error getting location:', error);
@@ -41,9 +42,9 @@ const getUserLocationAndFetchWeather = () => {
     }
 };
 
-// Event listener for search button that fetches weather by city name
+// Event listener for search
 const handleSearch = async () => {
-    const city = cityInput.value.trim();
+    const city = cityInput.value.trim(); // Grt the city name
     if (!city) {
         console.log('Please enter a city name.');
         return;
@@ -57,30 +58,33 @@ searchButton.addEventListener('click', handleSearch);
 document.addEventListener('DOMContentLoaded', getUserLocationAndFetchWeather);
 
 
-// ------------------------------
-// Surprise Me (love letter) functionality remains unchanged
+// Surprise Me (love letter) functionality button and popup
 const surpriseButton = document.getElementById('surprise-btn');
 const popup = document.getElementById('popup');
 const closePopup = document.getElementById('close-popup');
 const quoteElement = document.getElementById('quote');
 
-const fetchAndShowLoveLetter = async () => {
-    try {
+surpriseButton.addEventListener('click', async () => {
+    try{
+        //Fetch love letter from server.js '/surprise' route
         const response = await fetch('/surprise');
+
         if (!response.ok) {
             throw new Error('Failed to fetch love letter');
         }
+
         const data = await response.json();
         const loveLetter = data.loveLetter || 'Love you, my Little Banana!';
+
+        //Display the quote in the popup
         quoteElement.textContent = loveLetter;
         popup.style.display = 'block';
-    } catch (error) {
+    } catch (error){
         console.error('Error fetching love letter:', error);
         popup.style.display = 'none';
     }
-};
+});
 
-surpriseButton.addEventListener('click', fetchAndShowLoveLetter);
 closePopup.addEventListener('click', () => {
     popup.style.display = 'none';
 });
