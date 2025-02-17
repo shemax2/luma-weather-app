@@ -72,15 +72,37 @@ app.get('/weather', async (req, res) => {
             params: {
                 latitude,
                 longitude,
-                hourly: 'temperature_2m',
+                daily: 'temperature_2m_max,temperature_2m_min,weathercode',
                 timezone: 'auto',
             },
         });
 
-        const temperatures = weatherResponse.data.hourly.temperature_2m;
-        const highTemperature = Math.round(Math.max(...temperatures));
-        const lowTemperature = Math.round(Math.min(...temperatures));
-        res.json({ city: cityName, highTemperature, lowTemperature });
+        const daily = weatherResponse.data.daily;
+        const highTemperature = Math.round(daily.temperature_2m_max[0]);
+        const lowTemperature = Math.round(daily.temperature_2m_min[0]);
+        const weatherCode = daily.weathercode[0];
+
+         // Map the weather code to a text condition (example mapping)
+         let condition = '';
+         if (weatherCode === 0) {
+             condition = 'Clear sky';
+         } else if (weatherCode >= 1 && weatherCode <= 3) {
+             condition = 'Partly cloudy';
+         } else if (weatherCode >= 45 && weatherCode <= 48) {
+             condition = 'Fog';
+         } else if ((weatherCode >= 51 && weatherCode <= 57) || (weatherCode >= 61 && weatherCode <= 67)) {
+             condition = 'Rain';
+         } else if (weatherCode >= 71 && weatherCode <= 77) {
+             condition = 'Snow';
+         } else if (weatherCode >= 80 && weatherCode <= 82) {
+             condition = 'Rain showers';
+         } else if (weatherCode >= 95) {
+             condition = 'Thunderstorm';
+         } else {
+             condition = 'Unknown';
+         }
+         
+        res.json({ city: cityName, highTemperature, lowTemperature, condition });
     } catch (error) {
         console.error('Error fetching data:', error.message);
         res.status(500).send('Internal Server Error');
