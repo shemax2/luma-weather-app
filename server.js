@@ -39,11 +39,29 @@ app.get('/weather', async (req, res) => {
                 return res.status(404).send('City not found');
             }
 
-            const { lat: latitude, lng: longitude } = geocodeResponse.data.results[0].geometry;
+            const { lat: fetchedLat, lng: fetchedLon } = geocodeResponse.data.results[0].geometry;
+            latitude = fetchedLat;
+            longitude = fetchedLon;
         } else if (lat && lon) {
             latitude = lat;
             longitude = lon;
-            cityName = 'Your Location';
+            // Perform reverse geocoding to get the city name based on coordinates
+            const reverseGeocodeUrl = `https://api.opencagedata.com/geocode/v1/json`;
+            const reverseResponse = await axios.get(reverseGeocodeUrl, {
+                params: {
+                    q: `${lat},${lon}`,
+                    key: apiKey,
+                    limit: 1,
+                },
+            });
+
+            if (reverseResponse.data.results.length > 0) {
+                const components = reverseResponse.data.results[0].components;
+                //city, town, or village 
+                cityName = components.city || components.town || components.village || "Unknown Location";
+            } else {
+                cityName = "Unknown Location";
+            }
         } else {
             return res.status(400).json({ message: "City or coordinates are required" });
         }
