@@ -15,6 +15,7 @@ const updateWeatherUI = (data) => {
        highTemperatureValue.innerHTML = data.highTemperature;
        lowTemperatureValue.innerHTML = data.lowTemperature;
        weatherDescription.textContent = data.condition;
+       updateWeatherIcon(data.condition);
 
 };
 
@@ -59,6 +60,31 @@ searchButton.addEventListener('click', handleSearch);
 // On page load, try to get user location and fetch weather accordingly.
 document.addEventListener('DOMContentLoaded', getUserLocationAndFetchWeather);
 
+// Function that maps condition to material Symbols icon names
+const  updateWeatherIcon = (condition) => {
+    const iconElement = document.querySelector('#weather-icon i');
+    let iconName = '';
+
+    const cond = condition.toLowerCase();
+
+    if (cond.includes('clear')) {
+        iconName = 'sunny';
+    } else if (cond.includes('cloud')) {
+        iconName = 'cloud';
+    } else if (cond.includes('rain')) {
+        iconName = 'rainy';
+    } else if (cond.includes('thunder')) {
+        iconName = 'bolt';
+    } else if (cond.includes('snow')) {
+        iconName = 'ac_unit';
+    } else if (cond.includes('fog') || cond.includes('mist')) {
+        iconName = 'foggy';
+    } else {
+        iconName = 'thermostat';
+    }
+
+    iconElement.textContent = iconName;
+}
 
 // Surprise Me (love letter) functionality button and popup
 const surpriseButton = document.getElementById('surprise-btn');
