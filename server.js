@@ -18,32 +18,39 @@ app.get('/', (req,res) => {
 
 // Weather route
 app.get('/weather', async (req, res) => {
-    const { city } = req.query;
+    const { city, lat, lon } = req.query;
     const apiKey = process.env.API_KEY;
 
     try{
-        // Get latitude and longitide for the city
-        const geocodeUrl = `https://api.opencagedata.com/geocode/v1/json`;
-        const geocodeResponse = await axios.get(geocodeUrl, {
-            params: {
-                q: city,
-                key: apiKey,
-                limit: 1,
-            },
-        });
+        if (city) {
+            // Get latitude and longitide for the city
+            const geocodeUrl = `https://api.opencagedata.com/geocode/v1/json`;
+            const geocodeResponse = await axios.get(geocodeUrl, {
+                params: {
+                    q: city,
+                    key: apiKey,
+                    limit: 1,
+                },
+            });
 
-        if (geocodeResponse.data.results.length === 0) {
-            return res.status(404).send('City not found');
+            if (geocodeResponse.data.results.length === 0) {
+                return res.status(404).send('City not found');
+            }
+
+            const { lat: latitude, lng: longitude } = geocodeResponse.data.results[0].geometry;
+        } else if (lat && lon) {
+            var latitude = lat;
+            var longitude = lon;
+        } else {
+            return res.status(400).json({ message: "City or coordinates are required" });
         }
-
-        const { lat, lng } = geocodeResponse.data.results[0].geometry;
-
+        
         // Fetch weather data based on coordinates
         const weatherUrl = 'https://api.open-meteo.com/v1/forecast';
         const weatherResponse = await axios.get(weatherUrl, {
             params: {
-                latitude: lat,
-                longitude: lng,
+                latitude,
+                longitude,
                 hourly: 'temperature_2m',
                 timezone: 'auto',
             },
