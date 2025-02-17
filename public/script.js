@@ -6,6 +6,7 @@ const cityInput = document.querySelector('.search-input');
 const weatherTitle = document.querySelector('.city');
 const highTemperatureValue = document.querySelector('.high-temperature .temperature-value');
 const lowTemperatureValue = document.querySelector('.low-temperature .temperature-value');
+const weatherDescription = document.querySelector('.weather-description');
 
 
 //Reusable function to update the DOM with weather data
@@ -13,6 +14,7 @@ const updateWeatherUI = (data) => {
     weatherTitle.innerHTML = data.city;
        highTemperatureValue.innerHTML = data.highTemperature;
        lowTemperatureValue.innerHTML = data.lowTemperature;
+       weatherDescription.textContent = data.condition;
 
 };
 
