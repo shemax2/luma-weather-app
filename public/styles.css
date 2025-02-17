@@ -266,14 +266,21 @@ p{
     margin: 0;
 }
 
-.high-temperature {
+.temperature-container {
     display: flex;
-    width: 4.71vw;
-    height: 4.31vh;
-    font-size: 2.3vw;
+    justify-content: space-between;
+    align-items: center;
     position: absolute;
     top: 5.80vw;
     left: 2.08vw;
+    width: 7.7vw;
+}
+
+.high-temperature {
+    display: flex;
+    /* width: 4.71vw;
+    height: 4.31vh; */
+    font-size: 2.3vw;
     color: white;
 }
 
@@ -285,10 +292,6 @@ p{
     justify-content: center;
     width: 2.09vw;
     height: 2.5vh;
-    position: absolute;
-    top: 6.54vw;
-    left: 6.5vw;
-    padding-left: 10px;
     border-radius: 25%;
     font-size: 1.2vh;
     font-weight: 700;
