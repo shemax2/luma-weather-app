@@ -72,15 +72,22 @@ app.get('/weather', async (req, res) => {
             params: {
                 latitude,
                 longitude,
-                daily: 'temperature_2m_max,temperature_2m_min,weathercode',
+                current_weather: true,
+                hourly: 'apparent_temperature',
                 timezone: 'auto',
             },
         });
 
-        const daily = weatherResponse.data.daily;
-        const highTemperature = Math.round(daily.temperature_2m_max[0]);
-        const lowTemperature = Math.round(daily.temperature_2m_min[0]);
-        const weatherCode = daily.weathercode[0];
+        // Extract high temperature as the current temperature
+        const currentWeather = weatherResponse.data.current_weather;
+        const highTemperature = Math.round(currentWeather.temperature);
+        const weatherCode = currentWeather.weathercode;
+
+        // Extract low temperature as daily low from the daily data array
+        const hourly = weatherResponse.data.hourly;
+        const currentTime = currentWeather.time;
+        const hourlyIndex = hourly.time.findIndex(time => time === currentTime);
+        const lowTemperature = hourlyIndex !== -1 ? Math.round(hourly.apparent_temperature[hourlyIndex]) : highTemperature;
 
          // Map the weather code to a text condition (example mapping)
          let condition = '';
