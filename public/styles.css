@@ -16,6 +16,7 @@ body{
     font-family: "Montserrat", serif;
     font-optical-sizing: auto;
     font-style: normal;
+    color: #0A0C17;
 }
 
 h1,h2{
@@ -28,7 +29,7 @@ p{
 
 /* Wrappers */
 .wrapper{
-    width: 66.67vw;
+    width: 50%;
 }
 
 #header-wrapper{
@@ -38,7 +39,6 @@ p{
 }
 
 #middle-wrapper{
-    background-color: blue;
     height: 38.44vh;
 }
 
@@ -52,23 +52,23 @@ p{
     display: flex;
     align-items: center;
     gap: 1vw;
-    margin-left: 3.13vw;
+    margin-left: 2vw;
 }
 
 .profile{
-    width: 3.81vw;
-    height: 3.81vw;
+    width: 3.5vw;
+    height: 3.5vw;
     border-radius: 50%;
 }
 
 .greetings{
     display: flex;
     flex-direction: column;
-    gap: 1vh;
+    gap: 0.8vh;
 }
 
 .greeting-hello,.greeting-name {
-    font-size: 2.78vh;
+    font-size: 2.5vh;
 }
 
 .greeting-hello {
@@ -83,7 +83,7 @@ p{
     display: flex;
     align-items: center;
     gap: 1vw;
-    margin-right: 3.13vw;
+    margin-right: 2vw;
 }
 
 .search-container{
@@ -116,7 +116,7 @@ p{
 }
 
 #search-button .material-symbols-outlined {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #7b0323;
 }
 
@@ -148,7 +148,7 @@ p{
 }
 
 #surprise-btn .material-symbols-outlined {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     transition: all 0.2s ease;
     cursor: pointer;
     color: rgb(66, 66, 66);
@@ -208,6 +208,145 @@ p{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* middle-wrapper weather-section */
+#weather-section {
+    width: 22vw;
+    height: 38vh;
+    border-radius: 1.25vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.weather-img {
+    width: auto;
+    height: 100%;
+    transform: translateX(-2%);
+}
+
+#weather-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: clamp(15px, 1.8vw, 40px);
+    height: clamp(15px, 1.8vw, 40px);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    left: clamp(15px, 1.57vw, 30px);
+    top: clamp(15px, 3.23vh, 30px);
+    background-color: white;
+    font-size: 1.2vw;
+}
+
+.weather-icon {
+    font-size: 2.5vh;
+    color: #7b0323;
+}
+
+.weather-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    position: absolute;
+    left: 4.18vw;
+    top: 2.5vh;
+}
+
+.city {
+    font-size: 1.5vh;
+    font-weight: 700;
+    margin: 0;  
+}
+
+.weather-subtext {
+    font-size: 1.15vh;
+    font-weight: 600;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.temperature-container {
+    display: flex;
+    gap: 0.5vw;
+    align-items: center;
+    position: absolute;
+    top: 5.80vw;
+    left: 2.08vw;
+    width: 7.7vw;
+}
+
+.high-temperature {
+    display: flex;
+    font-size: 2.05vw;
+    font-weight: 530;
+}
+
+.low-temperature {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.09vw;
+    height: 2.5vh;
+    border-radius: 9px;
+    font-size: 1.2vh;
+    font-weight: 700;
+}
+
+.weather-description {
+    position: absolute;
+    top: 8.7vw;
+    left: 2.08vw;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.weather-components-container {
+    display: flex;
+    gap: 1.04vw;
+    position: absolute;
+    bottom: 0;
+    margin: 2.08vw;
+}
+
+.component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+    width: 5.26vw;
+    height: 4vw;
+    border-radius: 15px;
+}
+
+.pressure {
+    background-color: #1A2841;
+    color: white;
+}
+.visibility {
+    background-color: #CBE169;
+}
+.humidity {
+    background-color: white;
+}
+
+.component .title {
+    font-size: 1.15vh;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.title-value {
+    font-size: 1.8vh;
+    font-weight: 550;
+}
+
+.pressure .title-value,
+.humidity .title-value {
+    display: flex;
 }
 
 /* Medium and smaller screens */

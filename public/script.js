@@ -3,29 +3,127 @@
 // Select elements
 const searchButton = document.getElementById('search-button');
 const cityInput = document.querySelector('.search-input');
+const weatherTitle = document.querySelector('.city');
+
+const highTemperatureValue = document.querySelector('.high-temperature .temperature-value');
+const lowTemperatureValue = document.querySelector('.low-temperature .temperature-value');
+const weatherDescription = document.querySelector('.weather-description');
+
+const pressureValue = document.querySelector('.pressure .title-value .pressure-value');
+const visibilityValue = document.querySelector('.visibility .title-value .visibility-value');
+const humidityValue = document.querySelector('.humidity .title-value .humidity-value');
+
+
+//Reusable function to update the DOM with weather data
+const updateWeatherUI = (data) => {
+    weatherTitle.innerHTML = data.city;
+    highTemperatureValue.innerHTML = data.highTemperature;
+    lowTemperatureValue.innerHTML = data.lowTemperature;
+    weatherDescription.textContent = data.condition;
+
+    updateWeatherIcon(data.condition);
+    updateWeatherBackground(data.condition);
+
+    if (pressureValue) pressureValue.textContent = data.surfacePressure !== null ? data.surfacePressure : 'N/A';
+    if (visibilityValue) visibilityValue.textContent = data.visibility !== null ? data.visibility : 'N/A';
+    if (humidityValue) humidityValue.textContent = data.relativeHumidity !== null ? data.relativeHumidity : 'N/A';
+
+};
+
+//Reusable function to fetch weather using a query string.
+const fetchWeather = async (query) => {
+    try {
+        const response = await axios.get(`/weather?${query}`);
+        updateWeatherUI(response.data);
+        console.log(`City: ${response.data.city}`);
+    } catch (error) {
+        console.error("Error fetching weather data:", error.message);
+        alert("Something went wrong");
+    }
+};
+
+// Function to get user location and fetch weather
+const getUserLocationAndFetchWeather = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude,longitude } = position.coords;
+            fetchWeather(`lat=${latitude}&lon=${longitude}`);
+        }, (error) => {
+            console.error('Error getting location:', error);
+        });
+    } else {
+        console.error('Geolocation is not supported by this browser.');
+    }
+};
 
 // Event listener for search
-searchButton.addEventListener('click', async () => {
+const handleSearch = async () => {
     const city = cityInput.value.trim(); // Grt the city name
     if (!city) {
         console.log('Please enter a city name.');
         return;
     }
+    fetchWeather(`city=${city}`);
+};
 
-    try {
-       // Send a GET request with the city name to the server
-       const response = await axios.get('/weather', { params: { city } });
+searchButton.addEventListener('click', handleSearch);
 
-       // Extract and log the city and temperature in the console
-       const { city: returnedCity, temperature } = response.data;
-       console.log(`City: ${returnedCity}, Temperature: ${temperature}°C`); 
-    } catch (error) {
-        console.error("Error fetching weather data:", error.message);
-        alert("Someting went wrong");
+// On page load, try to get user location and fetch weather accordingly.
+document.addEventListener('DOMContentLoaded', getUserLocationAndFetchWeather);
+
+// Function that maps condition to material Symbols icon names
+const  updateWeatherIcon = (condition) => {
+    const iconElement = document.querySelector('#weather-icon i');
+    let iconName = '';
+
+    const cond = condition.toLowerCase();
+
+    if (cond.includes('clear')) {
+        iconName = 'sunny';
+    } else if (cond.includes('cloud')) {
+        iconName = 'cloud';
+    } else if (cond.includes('rain')) {
+        iconName = 'rainy';
+    } else if (cond.includes('thunder')) {
+        iconName = 'bolt';
+    } else if (cond.includes('snow')) {
+        iconName = 'ac_unit';
+    } else if (cond.includes('fog') || cond.includes('mist')) {
+        iconName = 'foggy';
+    } else {
+        iconName = 'thermostat';
     }
-});
 
-// Get elements for Surprise Me button and popup
+    iconElement.textContent = iconName;
+};
+
+// Function to update the background image based on the weather condition
+const updateWeatherBackground = (condition) => {
+    const weatherImg = document.querySelector('.weather-img');
+    let imageUrl = '';
+
+    const cond = condition.toLowerCase();
+
+    if(cond.includes('clear')) {
+        imageUrl = '/images/clear.jpg';
+    } else if (cond.includes('cloud')) {
+        imageUrl = '/images/cloud.jpg';
+    } else if (cond.includes('rain')) {
+        imageUrl = '/images/rain.jpg';
+    } else if (cond.includes('thunder')) {
+        imageUrl = '/images/rain.jpg';
+    } else if (cond.includes('snow')) {
+        imageUrl = '/images/snow.jpg';
+    } else if (cond.includes('fog') || cond.includes('mist')) {
+        imageUrl = '/images/fog.jpg';
+    } else {
+        imageUrl = '/images/clear.jpg';
+    }
+
+    weatherImg.src = imageUrl;
+};
+
+// Surprise Me (love letter) functionality button and popup
 const surpriseButton = document.getElementById('surprise-btn');
 const popup = document.getElementById('popup');
 const closePopup = document.getElementById('close-popup');
