@@ -83,7 +83,6 @@ app.get('/weather', async (req, res) => {
         const currentWeather = weatherResponse.data.current_weather;
         const highTemperature = Math.round(currentWeather.temperature);
         const weatherCode = currentWeather.weathercode;
-        console.log('Weather Code:', weatherCode);
 
         // Extract low temperature as daily low from the daily data array
         const daily = weatherResponse.data.daily;
