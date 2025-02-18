@@ -222,6 +222,7 @@ p{
 .weather-img {
     width: auto;
     height: 100%;
+    transform: translateX(-2%);
 }
 
 #weather-icon {
@@ -248,22 +249,21 @@ p{
     display: flex;
     flex-direction: column;
     gap: 0.5vw;
-    color: white;
     position: absolute;
     left: 4.18vw;
     top: 2.5vh;
 }
 
 .city {
-    font-size: 2vh;
-    font-weight: 500;
-    color: white;
+    font-size: 1.5vh;
+    font-weight: 700;
     margin: 0;  
 }
 
 .weather-subtext {
-    font-size: 1.5vh;
-    color: white;
+    font-size: 1.15vh;
+    font-weight: 600;
+    opacity: 0.8;
     margin: 0;
 }
 
@@ -279,19 +279,18 @@ p{
 
 .high-temperature {
     display: flex;
-    font-size: 2.3vw;
-    color: white;
+    font-size: 2.05vw;
+    font-weight: 530;
 }
 
 .low-temperature {
-    color: white;
-    background-color: #462029;
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 2.09vw;
     height: 2.5vh;
-    border-radius: 10px;
+    border-radius: 9px;
     font-size: 1.2vh;
     font-weight: 700;
 }
@@ -299,10 +298,9 @@ p{
 .weather-description {
     position: absolute;
     top: 9.11vw;
-    color: white;
     left: 2.08vw;
-    font-size: 0.7rem;
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .weather-components-container {
