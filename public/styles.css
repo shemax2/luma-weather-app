@@ -219,8 +219,8 @@ p{
 }
 
 .weather-img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
 }
 
 #weather-icon {
@@ -278,8 +278,6 @@ p{
 
 .high-temperature {
     display: flex;
-    /* width: 4.71vw;
-    height: 4.31vh; */
     font-size: 2.3vw;
     color: white;
 }
