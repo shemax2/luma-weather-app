@@ -12,10 +12,11 @@ const weatherDescription = document.querySelector('.weather-description');
 //Reusable function to update the DOM with weather data
 const updateWeatherUI = (data) => {
     weatherTitle.innerHTML = data.city;
-       highTemperatureValue.innerHTML = data.highTemperature;
-       lowTemperatureValue.innerHTML = data.lowTemperature;
-       weatherDescription.textContent = data.condition;
-       updateWeatherIcon(data.condition);
+    highTemperatureValue.innerHTML = data.highTemperature;
+    lowTemperatureValue.innerHTML = data.lowTemperature;
+    weatherDescription.textContent = data.condition;
+    updateWeatherIcon(data.condition);
+    updateWeatherBackground(data.condition);
 
 };
 
@@ -84,7 +85,33 @@ const  updateWeatherIcon = (condition) => {
     }
 
     iconElement.textContent = iconName;
-}
+};
+
+// Function to update the background image based on the weather condition
+const updateWeatherBackground = (condition) => {
+    const weatherImg = document.querySelector('.weather-img');
+    let imageUrl = '';
+
+    const cond = condition.toLowerCase();
+
+    if(cond.includes('clear')) {
+        imageUrl = '/images/clear.jpg';
+    } else if (cond.includes('cloud')) {
+        imageUrl = '/images/cloud.jpg';
+    } else if (cond.includes('rain')) {
+        imageUrl = '/images/rain.jpg';
+    } else if (cond.includes('thunder')) {
+        imageUrl = '/images/rain.jpg';
+    } else if (cond.includes('snow')) {
+        imageUrl = '/images/snow.jpg';
+    } else if (cond.includes('fog') || cond.includes('mist')) {
+        imageUrl = '/images/fog.jpg';
+    } else {
+        imageUrl = '/images/clear.jpg';
+    }
+
+    weatherImg.src = imageUrl;
+};
 
 // Surprise Me (love letter) functionality button and popup
 const surpriseButton = document.getElementById('surprise-btn');
