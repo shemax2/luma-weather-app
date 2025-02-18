@@ -16,6 +16,7 @@ body{
     font-family: "Montserrat", serif;
     font-optical-sizing: auto;
     font-style: normal;
+    color: #0A0C17;
 }
 
 h1,h2{
@@ -290,7 +291,7 @@ p{
     justify-content: center;
     width: 2.09vw;
     height: 2.5vh;
-    border-radius: 25%;
+    border-radius: 10px;
     font-size: 1.2vh;
     font-weight: 700;
 }
@@ -302,6 +303,52 @@ p{
     left: 2.08vw;
     font-size: 0.7rem;
     font-weight: 500;
+}
+
+.weather-components-container {
+    display: flex;
+    gap: 1.04vw;
+    position: absolute;
+    bottom: 0;
+    margin: 2.08vw;
+}
+
+.component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+    width: 5.26vw;
+    height: 4vw;
+    border-radius: 15px;
+}
+
+.pressure {
+    background-color: #1A2841;
+    color: white;
+}
+.visibility {
+    background-color: #CBE169;
+}
+.humidity {
+    background-color: white;
+}
+
+.component .title {
+    font-size: 1.15vh;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.title-value {
+    font-size: 1.8vh;
+    font-weight: 550;
+}
+
+.pressure .title-value,
+.humidity .title-value {
+    display: flex;
 }
 
 /* Medium and smaller screens */
