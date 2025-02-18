@@ -90,6 +90,7 @@ app.get('/weather', async (req, res) => {
 
         // Extract hourly data for humidity, pressure, and visibility
         const hourly = weatherResponse.data.hourly;
+        const currentTime = currentWeather.time;
         const hourlyIndex = hourly.time.findIndex(time => time === currentTime);
 
         const relativeHumidity = hourlyIndex !== -1 ? Math.round(hourly.relativehumidity_2m[hourlyIndex]) : null;
