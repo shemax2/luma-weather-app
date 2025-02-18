@@ -83,6 +83,7 @@ app.get('/weather', async (req, res) => {
         const currentWeather = weatherResponse.data.current_weather;
         const highTemperature = Math.round(currentWeather.temperature);
         const weatherCode = currentWeather.weathercode;
+        console.log('Weather Code:', weatherCode);
 
         // Extract low temperature as daily low from the daily data array
         const daily = weatherResponse.data.daily;
@@ -90,8 +91,8 @@ app.get('/weather', async (req, res) => {
 
         // Extract hourly data for humidity, pressure, and visibility
         const hourly = weatherResponse.data.hourly;
-        const currentTime = currentWeather.time;
-        const hourlyIndex = hourly.time.findIndex(time => time === currentTime);
+        const currentHour = currentWeather.time.substring(0, 13) + ":00";
+        const hourlyIndex = hourly.time.findIndex(time => time === currentHour);
 
         const relativeHumidity = hourlyIndex !== -1 ? Math.round(hourly.relativehumidity_2m[hourlyIndex]) : null;
         const surfacePressure = hourlyIndex !== -1 ? Math.round(hourly.surface_pressure[hourlyIndex]) : null;
