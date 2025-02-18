@@ -4,9 +4,14 @@
 const searchButton = document.getElementById('search-button');
 const cityInput = document.querySelector('.search-input');
 const weatherTitle = document.querySelector('.city');
+
 const highTemperatureValue = document.querySelector('.high-temperature .temperature-value');
 const lowTemperatureValue = document.querySelector('.low-temperature .temperature-value');
 const weatherDescription = document.querySelector('.weather-description');
+
+const pressureValue = document.querySelector('.pressure .title-value .pressure-value');
+const visibilityValue = document.querySelector('.visibility .title-value .visibility-value');
+const humidityValue = document.querySelector('.humidity .title-value .humidity-value');
 
 
 //Reusable function to update the DOM with weather data
@@ -15,8 +20,13 @@ const updateWeatherUI = (data) => {
     highTemperatureValue.innerHTML = data.highTemperature;
     lowTemperatureValue.innerHTML = data.lowTemperature;
     weatherDescription.textContent = data.condition;
+
     updateWeatherIcon(data.condition);
     updateWeatherBackground(data.condition);
+
+    if (pressureValue) pressureValue.textContent = data.surfacePressure !== null ? data.surfacePressure : 'N/A';
+    if (visibilityValue) visibilityValue.textContent = data.visibility !== null ? data.visibility : 'N/A';
+    if (humidityValue) humidityValue.textContent = data.relativeHumidity !== null ? data.relativeHumidity : 'N/A';
 
 };
 
