@@ -74,6 +74,7 @@ app.get('/weather', async (req, res) => {
                 longitude,
                 current_weather: true,
                 daily: 'temperature_2m_min',
+                hourly: 'relativehumidity_2m,surface_pressure,visibility',
                 timezone: 'auto',
             },
         });
@@ -86,6 +87,15 @@ app.get('/weather', async (req, res) => {
         // Extract low temperature as daily low from the daily data array
         const daily = weatherResponse.data.daily;
         const lowTemperature = Math.round(daily.temperature_2m_min[0]);
+
+        // Extract hourly data for humidity, pressure, and visibility
+        const hourly = weatherResponse.data.hourly;
+        const hourlyIndex = hourly.time.findIndex(time => time === currentTime);
+
+        const relativeHumidity = hourlyIndex !== -1 ? Math.round(hourly.relativehumidity_2m[hourlyIndex]) : null;
+        const surfacePressure = hourlyIndex !== -1 ? Math.round(hourly.surface_pressure[hourlyIndex]) : null;
+        const visibility = hourlyIndex !== -1 ? Math.round(hourly.visibility[hourlyIndex]) : null;
+
 
          // Map the weather code to a text condition (example mapping)
          let condition = '';
@@ -107,7 +117,15 @@ app.get('/weather', async (req, res) => {
              condition = 'Unknown';
          }
          
-        res.json({ city: cityName, highTemperature, lowTemperature, condition });
+        res.json({ 
+            city: cityName, 
+            highTemperature, 
+            lowTemperature, 
+            condition, 
+            relativeHumidity, 
+            surfacePressure, 
+            visibility 
+});
     } catch (error) {
         console.error('Error fetching data:', error.message);
         res.status(500).send('Internal Server Error');
