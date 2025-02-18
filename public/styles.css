@@ -268,7 +268,7 @@ p{
 
 .temperature-container {
     display: flex;
-    justify-content: space-between;
+    gap: 0.5vw;
     align-items: center;
     position: absolute;
     top: 5.80vw;
