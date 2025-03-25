@@ -281,6 +281,7 @@ p{
     display: flex;
     font-size: 2.05vw;
     font-weight: 530;
+    color: white;
 }
 
 .low-temperature {
@@ -301,6 +302,7 @@ p{
     left: 2.08vw;
     font-size: 0.8rem;
     font-weight: 600;
+    color: white;
 }
 
 .weather-components-container {
