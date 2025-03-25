@@ -16,7 +16,7 @@ body{
     font-family: "Montserrat", serif;
     font-optical-sizing: auto;
     font-style: normal;
-    color: #0A0C17;
+    color: #201114;
 }
 
 h1,h2{
@@ -285,7 +285,8 @@ p{
 }
 
 .low-temperature {
-    background-color: white;
+    background-color: #3f0816;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
