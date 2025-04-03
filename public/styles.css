@@ -1,4 +1,4 @@
-/* Reset */
+/* Reset default browser syle */
 *{
     margin: 0;
     padding: 0;
@@ -47,7 +47,9 @@ p{
     height: 45.44vh;
 }
 
-/* Header */
+/* #region - header wrapper styling */
+
+/* #region - Header left Side */
 .header-left{
     display: flex;
     align-items: center;
@@ -78,14 +80,16 @@ p{
 .greeting-name{
     font-weight: 550;
 }
+/* #endregion */
 
+/* #region - Header right Side */
 .header-right{
     display: flex;
     align-items: center;
     gap: 1vw;
     margin-right: 2vw;
 }
-
+/* #region - Search box Styling */
 .search-container{
     display: flex;
     align-items: center;
@@ -135,7 +139,9 @@ p{
         transform: scale(1) translateY(0);
     }
 }
+/* #endregion */
 
+/* #region - Surprise button styling */
 #surprise-btn {
     display: flex;
     justify-content: center;
@@ -172,8 +178,9 @@ p{
     color: #d4b2ab;
     transform: scale(0.7);
 }
+/* #endregion */
 
-/* Style for the popup */
+/* #region - Surprise button popup Styling */
 .popup {
     display: none;
     position: fixed;
@@ -209,8 +216,15 @@ p{
     text-decoration: none;
     cursor: pointer;
 }
+/* #endregion */
+/* #endregion */
 
-/* middle-wrapper weather-section */
+/* #endregion */
+
+
+/* #region - middle wrapper styling */
+
+/* #region - middle wrapper weather-section */
 #weather-section {
     width: 22vw;
     height: 38vh;
@@ -224,7 +238,7 @@ p{
     height: 100%;
     transform: translateX(-2%);
 }
-
+/* #region - weather icon and city */
 #weather-icon {
     display: flex;
     align-items: center;
@@ -266,7 +280,8 @@ p{
     opacity: 0.8;
     margin: 0;
 }
-
+/* #endregion */
+/* #region - high and low tempersture */
 .temperature-container {
     display: flex;
     gap: 0.5vw;
@@ -305,7 +320,8 @@ p{
     font-weight: 600;
     color: white;
 }
-
+/* #endregion */
+/* #region - Pressure,Visibility,Humidity Components */
 .weather-components-container {
     display: flex;
     gap: 1.04vw;
@@ -351,8 +367,12 @@ p{
 .humidity .title-value {
     display: flex;
 }
+/* #endregion */
+/* #endregion */
+/* #endregion */
 
-/* Medium and smaller screens */
+
+/* #region - Medium and smaller screens */
 
 /* Wrappers */
 @media (max-width: 961px){
@@ -360,3 +380,4 @@ p{
         width: 100%;
     }   
 }
+/* #endregion */
