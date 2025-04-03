@@ -379,6 +379,10 @@ p{
     position: relative;
     background-color: #d4b2ab;
 }
+
+.aqi-img {
+    width: 100%;
+}
 /* #endregion */
 /* #endregion */
 
