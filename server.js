@@ -95,7 +95,7 @@ app.get('/weather', async (req, res) => {
 
         const relativeHumidity = hourlyIndex !== -1 ? Math.round(hourly.relativehumidity_2m[hourlyIndex]) : null;
         const surfacePressure = hourlyIndex !== -1 ? Math.round(hourly.surface_pressure[hourlyIndex]) : null;
-        const visibility = hourlyIndex !== -1 ? Math.round(hourly.visibility[hourlyIndex]) : null;
+        const visibility = hourlyIndex !== -1 ? Math.round(hourly.visibility[hourlyIndex] / 1000) : null;
 
 
          // Map the weather code to a text condition (example mapping)
