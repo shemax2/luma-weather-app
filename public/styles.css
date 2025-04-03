@@ -40,6 +40,8 @@ p{
 
 #middle-wrapper{
     height: 38.44vh;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 #footer-wrapper{
@@ -81,7 +83,6 @@ p{
     font-weight: 550;
 }
 /* #endregion */
-
 /* #region - Header right Side */
 .header-right{
     display: flex;
@@ -368,6 +369,16 @@ p{
     display: flex;
 }
 /* #endregion */
+/* #endregion */
+/* #region - middle wrapper aqi-section */
+#aqi-section {
+    width: 22vw;
+    height: 38vh;
+    border-radius: 1.25vw;
+    overflow: hidden;
+    position: relative;
+    background-color: #d4b2ab;
+}
 /* #endregion */
 /* #endregion */
 
