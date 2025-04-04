@@ -16,7 +16,7 @@ app.get('/', (req,res) => {
     res.render('index');
 });
 
-// Weather route
+// #region - Weather route
 app.get('/weather', async (req, res) => {
     const { city, lat, lon } = req.query;
     const apiKey = process.env.API_KEY;
@@ -25,7 +25,7 @@ app.get('/weather', async (req, res) => {
         let latitude, longitude;
         let cityName = city;
         if (city) {
-            // Get latitude and longitide for the city
+            // #region Get latitude and longitude for the city
             const geocodeUrl = `https://api.opencagedata.com/geocode/v1/json`;
             const geocodeResponse = await axios.get(geocodeUrl, {
                 params: {
@@ -42,10 +42,12 @@ app.get('/weather', async (req, res) => {
             const { lat: fetchedLat, lng: fetchedLon } = geocodeResponse.data.results[0].geometry;
             latitude = fetchedLat;
             longitude = fetchedLon;
+            // #endregion
         } else if (lat && lon) {
             latitude = lat;
             longitude = lon;
-            // Perform reverse geocoding to get the city name based on coordinates
+
+            // #region - Perform reverse geocoding to get the city name based on coordinates
             const reverseGeocodeUrl = `https://api.opencagedata.com/geocode/v1/json`;
             const reverseResponse = await axios.get(reverseGeocodeUrl, {
                 params: {
@@ -62,10 +64,12 @@ app.get('/weather', async (req, res) => {
             } else {
                 cityName = "Unknown Location";
             }
+            // #endregion
         } else {
             return res.status(400).json({ message: "City or coordinates are required" });
         }
         
+
         // Fetch weather data based on coordinates
         const weatherUrl = 'https://api.open-meteo.com/v1/forecast';
         const weatherResponse = await axios.get(weatherUrl, {
@@ -79,6 +83,8 @@ app.get('/weather', async (req, res) => {
             },
         });
 
+        // #region - Extract high and low temperatures
+
         // Extract high temperature as the current temperature
         const currentWeather = weatherResponse.data.current_weather;
         const highTemperature = Math.round(currentWeather.temperature);
@@ -87,18 +93,19 @@ app.get('/weather', async (req, res) => {
         // Extract low temperature as daily low from the daily data array
         const daily = weatherResponse.data.daily;
         const lowTemperature = Math.round(daily.temperature_2m_min[0]);
+        // #endregion
 
-        // Extract hourly data for humidity, pressure, and visibility
+        // #region - Extract hourly data for humidity, pressure, and visibility
         const hourly = weatherResponse.data.hourly;
         const currentHour = currentWeather.time.substring(0, 13) + ":00";
         const hourlyIndex = hourly.time.findIndex(time => time === currentHour);
 
         const relativeHumidity = hourlyIndex !== -1 ? Math.round(hourly.relativehumidity_2m[hourlyIndex]) : null;
         const surfacePressure = hourlyIndex !== -1 ? Math.round(hourly.surface_pressure[hourlyIndex]) : null;
-        const visibility = hourlyIndex !== -1 ? Math.round(hourly.visibility[hourlyIndex]) : null;
+        const visibility = hourlyIndex !== -1 ? Math.round(hourly.visibility[hourlyIndex] / 1000) : null;
+        // #endregion
 
-
-         // Map the weather code to a text condition (example mapping)
+         // #region - Map the weather code to a text condition (example mapping)
          let condition = '';
          if (weatherCode === 0) {
              condition = 'Clear sky';
@@ -117,7 +124,22 @@ app.get('/weather', async (req, res) => {
          } else {
              condition = 'Unknown';
          }
-         
+         // #endregion
+
+         // #region - Fetch AQI data from OpenWeatherMap Air Pollution API
+         const aqiUrl = 'http://api.openweathermap.org/data/2.5/air_pollution';
+         const aqiResponse = await axios.get(aqiUrl, {
+            params: {
+                lat: latitude,
+                lon: longitude,
+                appid: process.env.OWM_API_KEY
+            },
+         });
+         const aqiData = aqiResponse.data;
+         const aqiIndex = aqiData.list[0].main.aqi;
+         const mainPollutant = aqiData.list[0].components.pm2_5 ? 'PM 2.5' : 'Unknown';
+         // #endregion
+
         res.json({ 
             city: cityName, 
             highTemperature, 
@@ -125,16 +147,18 @@ app.get('/weather', async (req, res) => {
             condition, 
             relativeHumidity, 
             surfacePressure, 
-            visibility 
+            visibility,
+            aqi: aqiIndex,
+            mainPollutant 
 });
     } catch (error) {
         console.error('Error fetching data:', error.message);
         res.status(500).send('Internal Server Error');
     }
 });
+// #endregion
 
-
-// Endpoint for generating love letters using Cohere REST API
+// #region - Endpoint for generating love letters using Cohere REST API
 app.get('/surprise', async (req,res) => {
     try{
         const response = await axios.post('https://api.cohere.ai/v1/generate',
@@ -158,6 +182,7 @@ app.get('/surprise', async (req,res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+// #endregion
 
 // Start the server
 app.listen(PORT, () => {

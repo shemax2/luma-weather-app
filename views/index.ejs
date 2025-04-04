@@ -71,28 +71,62 @@
               <p class="weather-description">condition</p>
 
               <div class="weather-components-container">
-                <div class="pressure component">
-                    <span class="pressure-title title">Pressure</span>
+                <div class="pressure weather-component">
+                    <span class="pressure-title component-title">Pressure</span>
                     <div class="title-value">
                         <span class="pressure-value">800</span>
                         <span class="pressure-unit">mb</span> 
                     </div>
                 </div>
-                <div class="visibility component">
-                    <span class="visibility-title title">Visibility</span>
+                <div class="visibility weather-component">
+                    <span class="visibility-title component-title">Visibility</span>
                     <div class="title-value">
                         <span class="visibility-value">4.3</span>
                         <span class="visibility-unit"> km</span>
                     </div>  
                 </div>
-                <div class="humidity component">
-                    <span class="humidity-title title">Humidity</span>
+                <div class="humidity weather-component">
+                    <span class="humidity-title component-title">Humidity</span>
                     <div class="title-value">
                         <span class="humidity-value">87</span>
                         <span class="humidity-unit">%</span> 
                     </div>
                 </div>
               </div>
+         </div>
+
+         <div id="aqi-section">
+            <img src="/images/air.png" alt="Air quality Background" class="aqi-img">
+
+            <div id="aqi-icon"><i class="material-symbols-outlined aqi-icon">Air</i></div>
+            <div class="aqi-text">
+                <p class="aqi">Air Quality</p>
+                <p class="aqi-subtext">Main polution : <span class="aqi-pollutant">PM 2.5</span></p>
+            </div>
+
+            <div class="temperature-container">
+                <div class="high-temperature">
+                    <span class="temperature-value aqi-color aqi-value">390</span>
+                </div>
+                <div class="low-temperature aqi-container">
+                    <span class="temperature-value aqi-color">AQI</span>
+                  </div>
+            </div>
+            <p class="weather-description aqi-color">West Wind</p>
+
+            <div class="aqi-bar-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <span class="bar-text-good component-title">Good</span>
+                <span class="bar-text-hazardous component-title">Hazardous</span>
+
+                <div class="pointer-container">
+                    <span class="pointer-label component-title">Standard</span>
+                    <div class="tail"></div>
+                </div>
+            </div>
          </div>
     </main>
 
