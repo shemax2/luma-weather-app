@@ -1,6 +1,6 @@
 // Search bar functionality
 
-// Select elements
+// Weather elements
 const searchButton = document.getElementById('search-button');
 const cityInput = document.querySelector('.search-input');
 const weatherTitle = document.querySelector('.city');
@@ -13,8 +13,9 @@ const pressureValue = document.querySelector('.pressure .title-value .pressure-v
 const visibilityValue = document.querySelector('.visibility .title-value .visibility-value');
 const humidityValue = document.querySelector('.humidity .title-value .humidity-value');
 
+// AQI elements
 
-//Reusable function to update the DOM with weather data
+// #region - Reusable function to update the DOM with weather data
 const updateWeatherUI = (data) => {
     weatherTitle.innerHTML = data.city;
     highTemperatureValue.innerHTML = data.highTemperature;
@@ -29,8 +30,9 @@ const updateWeatherUI = (data) => {
     if (humidityValue) humidityValue.textContent = data.relativeHumidity !== null ? data.relativeHumidity : 'N/A';
 
 };
+// #endregion
 
-//Reusable function to fetch weather using a query string.
+// #region - Reusable function to fetch weather using a query string.
 const fetchWeather = async (query) => {
     try {
         const response = await axios.get(`/weather?${query}`);
@@ -41,8 +43,9 @@ const fetchWeather = async (query) => {
         alert("Something went wrong");
     }
 };
+// #endregion
 
-// Function to get user location and fetch weather
+// #region - Function to get user location and fetch weather
 const getUserLocationAndFetchWeather = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -55,8 +58,9 @@ const getUserLocationAndFetchWeather = () => {
         console.error('Geolocation is not supported by this browser.');
     }
 };
+// #endregion
 
-// Event listener for search
+// #region -  Event listener for search
 const handleSearch = async () => {
     const city = cityInput.value.trim(); // Grt the city name
     if (!city) {
@@ -67,11 +71,12 @@ const handleSearch = async () => {
 };
 
 searchButton.addEventListener('click', handleSearch);
+// #endregion
 
 // On page load, try to get user location and fetch weather accordingly.
 document.addEventListener('DOMContentLoaded', getUserLocationAndFetchWeather);
 
-// Function that maps condition to material Symbols icon names
+// #region - Function that maps condition to material Symbols icon names
 const  updateWeatherIcon = (condition) => {
     const iconElement = document.querySelector('#weather-icon i');
     let iconName = '';
@@ -96,8 +101,9 @@ const  updateWeatherIcon = (condition) => {
 
     iconElement.textContent = iconName;
 };
+// #endregion
 
-// Function to update the background image based on the weather condition
+// #region - Function to update the background image based on the weather condition
 const updateWeatherBackground = (condition) => {
     const weatherImg = document.querySelector('.weather-img');
     let imageUrl = '';
@@ -122,8 +128,9 @@ const updateWeatherBackground = (condition) => {
 
     weatherImg.src = imageUrl;
 };
+// #endregion
 
-// Surprise Me (love letter) functionality button and popup
+// #region - Surprise Me (love letter) functionality button and popup
 const surpriseButton = document.getElementById('surprise-btn');
 const popup = document.getElementById('popup');
 const closePopup = document.getElementById('close-popup');
@@ -153,3 +160,4 @@ surpriseButton.addEventListener('click', async () => {
 closePopup.addEventListener('click', () => {
     popup.style.display = 'none';
 });
+// #endregion
