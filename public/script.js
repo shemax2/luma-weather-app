@@ -14,6 +14,9 @@ const visibilityValue = document.querySelector('.visibility .title-value .visibi
 const humidityValue = document.querySelector('.humidity .title-value .humidity-value');
 
 // AQI elements
+const aqiPolutantElement = document.querySelector('.aqi-pollutant');
+const aqiValueElement = document.querySelector('.aqi-value');
+const progressFillElement = document.querySelector('.progress-fill');
 
 // #region - Reusable function to update the DOM with weather data
 const updateWeatherUI = (data) => {
@@ -25,14 +28,24 @@ const updateWeatherUI = (data) => {
     updateWeatherIcon(data.condition);
     updateWeatherBackground(data.condition);
 
-    if (pressureValue) pressureValue.textContent = data.surfacePressure !== null ? data.surfacePressure : 'N/A';
-    if (visibilityValue) visibilityValue.textContent = data.visibility !== null ? data.visibility : 'N/A';
-    if (humidityValue) humidityValue.textContent = data.relativeHumidity !== null ? data.relativeHumidity : 'N/A';
+    // Update Weather Data
+    if(pressureValue) pressureValue.textContent = data.surfacePressure !== null ? data.surfacePressure : 'N/A';
+    if(visibilityValue) visibilityValue.textContent = data.visibility !== null ? data.visibility : 'N/A';
+    if(humidityValue) humidityValue.textContent = data.relativeHumidity !== null ? data.relativeHumidity : 'N/A';
 
+    // Update AQI data
+    if(aqiPolutantElement) aqiPolutantElement.textContent = data.mainPollutant;
+    if(aqiValueElement) aqiValueElement.textContent = data.aqi;
+
+    // Map AQI index (1-5) to a progress bar width
+    if(progressFillElement) {
+        const aqiPercentage = data.aqi * 20;
+        progressFillElement.style.width = `${aqiPercentage}%`;
+    }
 };
 // #endregion
 
-// #region - Reusable function to fetch weather using a query string.
+// #region - Reusable function to fetch weather and AQI using a query string.
 const fetchWeather = async (query) => {
     try {
         const response = await axios.get(`/weather?${query}`);

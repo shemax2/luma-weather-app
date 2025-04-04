@@ -125,6 +125,21 @@ app.get('/weather', async (req, res) => {
              condition = 'Unknown';
          }
          // #endregion
+
+         // #region - Fetch AQI data from OpenWeatherMap Air Pollution API
+         const aqiUrl = 'http://api.openweathermap.org/data/2.5/air_pollution';
+         const aqiResponse = await axios.get(aqiUrl, {
+            params: {
+                lat: latitude,
+                lon: longitude,
+                appid: process.env.OWM_API_KEY
+            },
+         });
+         const aqiData = aqiResponse.data;
+         const aqiIndex = aqiData.list[0].main.aqi;
+         const mainPollutant = aqiData.list[0].components.pm2_5 ? 'PM 2.5' : 'Unknown';
+         // #endregion
+
         res.json({ 
             city: cityName, 
             highTemperature, 
@@ -132,7 +147,9 @@ app.get('/weather', async (req, res) => {
             condition, 
             relativeHumidity, 
             surfacePressure, 
-            visibility 
+            visibility,
+            aqi: aqiIndex,
+            mainPollutant 
 });
     } catch (error) {
         console.error('Error fetching data:', error.message);
