@@ -27,6 +27,11 @@ p{
     font-weight: 300;
 }
 
+.component-title {
+    font-size: 1.15vh;
+    font-weight: 400;
+}
+
 /* Wrappers */
 .wrapper{
     width: 50%;
@@ -45,7 +50,7 @@ p{
 }
 
 #footer-wrapper{
-    background-color: gold;
+    /* background-color: gold; */
     height: 45.44vh;
 }
 
@@ -331,7 +336,7 @@ p{
     margin: 2.08vw;
 }
 
-.component {
+.weather-component {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -353,9 +358,7 @@ p{
     background-color: white;
 }
 
-.component .title {
-    font-size: 1.15vh;
-    font-weight: 400;
+.weather-component .component-title {
     opacity: 0.8;
 }
 
@@ -383,6 +386,135 @@ p{
 .aqi-img {
     width: 100%;
 }
+/* #region - aqi icon and air quality text */
+#aqi-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: clamp(15px, 1.8vw, 40px);
+    height: clamp(15px, 1.8vw, 40px);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    left: clamp(15px, 1.57vw, 30px);
+    top: clamp(15px, 3.23vh, 30px);
+    background-color: white;
+    font-size: 1.2vw;
+}
+
+.aqi-icon {
+    font-size: 2.5vh;
+    color: #7b0323;
+}
+
+.aqi-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    position: absolute;
+    left: 4.18vw;
+    top: 2.5vh;
+    color: white;
+}
+
+.aqi {
+    font-size: 1.5vh;
+    font-weight: 700;
+    margin: 0;  
+}
+
+.aqi-subtext {
+    font-size: 1.15vh;
+    font-weight: 600;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.aqi-color {
+    color: #201114;
+}
+
+.aqi-container {
+    background-color: #CBE169;
+}
+/* #endregion */
+/* #region - progess bar */
+.aqi-bar-container {
+    display:  flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute; 
+    width: 19.18vw;
+    height: clamp(50px, 4.40vw, 80px);
+    bottom: 4vh;
+    left: 1.57vw;
+    background-color: white;
+    border-radius: 1.04vw;
+    display: flex;
+    flex-direction: column;  
+}
+
+.progress-bar {
+    width: 90%;
+    height: 5px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    position: relative;
+    top: 1.5vh;
+}
+
+.progress-fill {
+    height: 100%;
+    width:40%;
+    background: repeating-linear-gradient(
+        45deg,
+        #7b0323,
+        #7b0323 5px,
+        #d4b2ab 5px,
+        #d4b2ab 10px
+    );
+    border-radius: 30px;
+    transition: width 0.3s ease;
+}
+
+.bar-text-good {
+    position: absolute;
+    left: 1vw;
+    top: 25px;
+}
+
+.bar-text-hazardous {
+    position: absolute;
+    right: 1vw;
+    top: 25px;
+}
+
+.pointer-container {
+    position: absolute;
+    top: 15px;
+    left: 31%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pointer-label {
+    background-color: #1A2841;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.tail {
+    width: 12px;
+    height: 12px;
+    background-color: #1A2841;
+    transform: rotate(45deg);
+    position: relative;
+    bottom: 10px;
+}
+/* #endregion */
 /* #endregion */
 /* #endregion */
 
