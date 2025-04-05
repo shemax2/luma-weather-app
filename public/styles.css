@@ -541,6 +541,7 @@ p{
     background-color: greenyellow;
 }
 
+/* #region - forecast titlle-icon-row */
 .forecast-icons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -582,6 +583,7 @@ p{
 .forecast-icon-active {
     color: #888;
 }
+/* #endregion */
 /* #endregion */
 
 /* #region - Medium and smaller screens */
