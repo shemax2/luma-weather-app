@@ -16,9 +16,10 @@ body{
     font-family: "Montserrat", serif;
     font-optical-sizing: auto;
     font-style: normal;
-    color: #201114;
+    color: #1A2841;
 }
 
+/* #region - Text works */
 h1,h2{
     font-weight: 600;
 }
@@ -27,12 +28,29 @@ p{
     font-weight: 300;
 }
 
+.normal-title {
+    font-weight: 450;
+    font-size: 2.5vh;
+}
+
+.bold-title {
+    font-weight: 550;
+    font-size: 2.5vh;
+}
+
+.double-title{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
 .component-title {
     font-size: 1.15vh;
     font-weight: 400;
 }
+/* #endregion */
 
-/* Wrappers */
+/* #region - Wrappers */
 .wrapper{
     width: 50%;
 }
@@ -50,9 +68,9 @@ p{
 }
 
 #footer-wrapper{
-    /* background-color: gold; */
     height: 45.44vh;
 }
+/* #endregion */
 
 /* #region - header wrapper styling */
 
@@ -68,24 +86,6 @@ p{
     width: 3.5vw;
     height: 3.5vw;
     border-radius: 50%;
-}
-
-.greetings{
-    display: flex;
-    flex-direction: column;
-    gap: 0.8vh;
-}
-
-.greeting-hello,.greeting-name {
-    font-size: 2.5vh;
-}
-
-.greeting-hello {
-    font-weight: 450;
-}
-
-.greeting-name{
-    font-weight: 550;
 }
 /* #endregion */
 /* #region - Header right Side */
@@ -523,7 +523,6 @@ p{
 .forecast-section {
     width: 578px;
     height: 380px;
-    background-color: #e0e0e0;
     position: relative;
     left: 35px;
     top: 40px;
@@ -534,7 +533,6 @@ p{
 }
 
 .title-icons-row {
-    background-color: blue;
     display: grid;
     grid-template-columns: 400px 1fr;
 }
@@ -543,33 +541,46 @@ p{
     background-color: greenyellow;
 }
 
-.forecast-title {
-    background-color: purple;
-}
-
 .forecast-icons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    background-color: red;
 }
 
 .icon-one {
     grid-column: 1;
     grid-row: 1;
-    background-color: cyan;
+    justify-self: center;
+    align-self: center;
+    background-color: #8a0025;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30%;
+    width: 63%;
+    height: 80%;
+    box-shadow: 0 4px 8px rgba(150, 114, 123, 0.6);
 }
 
 .icon-two {
     grid-column: 2;
     grid-row: 1;
-    background-color: thistle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon-three {
     grid-column: 3;
     grid-row: 1;
-    background-color: salmon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.forecast-icon-active {
+    color: #888;
 }
 /* #endregion */
 
