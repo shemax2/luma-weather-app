@@ -521,7 +521,7 @@ p{
 
 /* #region - footer wrapper styling */
 .forecast-section {
-    width: 570px;
+    width: 578px;
     height: 380px;
     background-color: #e0e0e0;
     position: relative;
@@ -533,12 +533,43 @@ p{
     grid-template-rows: 100px 1fr;
 }
 
-.title-icon-row {
+.title-icons-row {
     background-color: blue;
+    display: grid;
+    grid-template-columns: 400px 1fr;
 }
 
 .statistic-row {
     background-color: greenyellow;
+}
+
+.forecast-title {
+    background-color: purple;
+}
+
+.forecast-icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    background-color: red;
+}
+
+.icon-one {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: cyan;
+}
+
+.icon-two {
+    grid-column: 2;
+    grid-row: 1;
+    background-color: thistle;
+}
+
+.icon-three {
+    grid-column: 3;
+    grid-row: 1;
+    background-color: salmon;
 }
 /* #endregion */
 
