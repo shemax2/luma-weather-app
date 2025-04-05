@@ -519,6 +519,29 @@ p{
 /* #endregion */
 
 
+/* #region - footer wrapper styling */
+.forecast-section {
+    width: 570px;
+    height: 380px;
+    background-color: #e0e0e0;
+    position: relative;
+    left: 35px;
+    top: 40px;
+
+    /* grid seting */
+    display: grid;
+    grid-template-rows: 100px 1fr;
+}
+
+.title-icon-row {
+    background-color: blue;
+}
+
+.statistic-row {
+    background-color: greenyellow;
+}
+/* #endregion */
+
 /* #region - Medium and smaller screens */
 
 /* Wrappers */
