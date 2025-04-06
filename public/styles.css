@@ -539,7 +539,10 @@ p{
 
 .statistic-row {
     background-color: greenyellow;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
+
 
 /* #region - forecast titlle-icon-row */
 .forecast-icons {
@@ -582,6 +585,28 @@ p{
 
 .forecast-icon-active {
     color: #888;
+}
+/* #endregion */
+
+/* #region - statistic-row styling */
+.morning {
+    grid-column: 1;
+    background-color: salmon;
+}
+
+.afternoon {
+    grid-column: 2;
+    background-color: violet;
+}
+
+.evening {
+    grid-column: 3;
+    background-color: green;
+}
+
+.night {
+    grid-column: 4;
+    background-color: teal;
 }
 /* #endregion */
 /* #endregion */
