@@ -44,7 +44,7 @@ p{
     gap: 0.8vh;
 }
 
-.component-title {
+.secondary-title {
     font-size: 1.15vh;
     font-weight: 400;
 }
@@ -358,7 +358,7 @@ p{
     background-color: white;
 }
 
-.weather-component .component-title {
+.weather-component .secondary-title {
     opacity: 0.8;
 }
 
@@ -538,7 +538,6 @@ p{
 }
 
 .statistic-row {
-    background-color: greenyellow;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
@@ -591,7 +590,10 @@ p{
 /* #region - statistic-row styling */
 .morning {
     grid-column: 1;
-    background-color: salmon;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .afternoon {
@@ -608,6 +610,19 @@ p{
     grid-column: 4;
     background-color: teal;
 }
+/* #region - morning of statistic-row */
+.statistic-weather-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: salmon;
+    
+}
+
+.morning-label {
+    margin-top: auto;
+}
+/* #endregion */
 /* #endregion */
 /* #endregion */
 
