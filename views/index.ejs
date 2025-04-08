@@ -145,25 +145,7 @@
                 </div>
             </div>
             <div class="statistic-row">
-                <svg width="100%" height="200">
-                    <path d="M 0 50
-                             Q 50 150, 100 150
-                             Q 150 50, 200 50
-                             Q 250 150, 300 150
-                             Q 350 50, 400 50"
-                        fill="none" stroke="#8a0025" stroke-width="2" />
-                </svg>
-                <div class="morning">
-                    <div class="statistic-weather-icon"></div>
-                    <span>20</span>
-                    <span class="secondary-title morning-label">Morning</span>
-                </div>
-                <div class="afternoon"></div>
-                <div class="evening"></div>
-                <div class="night"></div>
-            </div>
-         </div>
-         <svg width="100%" height="200">
+                <svg class="graph" viewBox="0 0 800 300" preserveAspectRatio="none">
                     <path d="M 0 100
                              Q 50 150, 100 150
                              Q 150 150, 200 100
@@ -171,9 +153,40 @@
                              Q 350 50, 400 100
                              Q 450 150, 500 150
                              Q 550 150, 600 100
-                            "
+                             Q 650 50, 700 50
+                             Q 750 50, 800 100"
                         fill="none" stroke="#8a0025" stroke-width="2" />
                 </svg>
+                <div class="morning item">
+                    <div class="statistic-weather-icon-morning-evening"></div>
+                    <div class="statistic-weather-text">
+                        <span class="title-value">20°</span>
+                        <span class="secondary-title">Morning</span>
+                    </div>
+                </div>
+                <div class="afternoon item">
+                    <div class="statistic-weather-icon-afternoon-night"></div>
+                    <div class="statistic-weather-text">
+                        <span class="title-value">34°</span>
+                        <span class="secondary-title morning-label">Morning</span>
+                    </div>
+                </div>
+                <div class="evening item">
+                    <div class="statistic-weather-icon-morning-evening"></div>
+                    <div class="statistic-weather-text">
+                        <span class="title-value">28°</span>
+                        <span class="secondary-title">Evening</span>
+                    </div>
+                </div>
+                <div class="night">
+                    <div class="statistic-weather-icon-afternoon-night"></div>
+                    <div class="statistic-weather-text">
+                        <span class="title-value">22°</span>
+                        <span class="secondary-title morning-label">Morning</span>
+                    </div>
+                </div>
+            </div>
+         </div>
     </footer>
 
     <!-- Link public/script.js -->
