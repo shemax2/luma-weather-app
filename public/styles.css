@@ -522,7 +522,7 @@ p{
 /* #region - footer wrapper styling */
 .forecast-section {
     width: 578px;
-    height: 380px;
+    height: 360px;
     position: relative;
     left: 35px;
     top: 40px;
@@ -623,15 +623,17 @@ p{
 }
 
 .item {
-    border-right: 0.5px solid #e0e0e0;
+    border-right: 0.5px solid #eeeeee;
 }
 /* #region - columns of statistic-row */
 .statistic-weather-icon-morning-evening {
+    display: flex;
+    justify-content: center;
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    border: 2px solid #eeeeee;
     margin-top: 40px;
-    background-color: salmon;
 }
 
 .statistic-weather-icon-afternoon-night {
@@ -658,6 +660,13 @@ p{
     margin-bottom: 40px;
 
 }
+
+/* #region icons */
+.morning-icon {
+    max-width: 60%;
+    /* max-height: 100%; */
+}
+/* #endregion */
 
 /* #endregion */
 /* #endregion */
