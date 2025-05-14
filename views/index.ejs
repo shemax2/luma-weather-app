@@ -145,6 +145,22 @@
                 </div>
             </div>
             <div class="statistic-row">
+
+                <!-- shadow curve -->
+                <svg class="graph" viewBox="0 0 800 300" preserveAspectRatio="none">
+                    <path d="M 0 100
+                             Q 50 150, 100 150
+                             Q 150 150, 200 120
+                             Q 250 90, 300 90
+                             Q 350 90, 400 120
+                             Q 450 150, 500 150
+                             Q 550 150, 600 120
+                             Q 650 90, 700 90
+                             Q 750 90, 800 115"
+                        fill="none" stroke="#d4d4d4" stroke-width="5" />
+                </svg>
+
+                <!-- curve  -->
                 <svg class="graph" viewBox="0 0 800 300" preserveAspectRatio="none">
                     <path d="M 0 100
                              Q 50 150, 100 150
@@ -155,31 +171,42 @@
                              Q 550 150, 600 100
                              Q 650 50, 700 50
                              Q 750 50, 800 100"
-                        fill="none" stroke="#8a0025" stroke-width="2" />
+                        fill="none" stroke="#8a0025" stroke-width="5" />
+
+                        <!-- curve dots  -->
+                <ellipse class="dot" cx="100" cy="150" rx="4" ry="8" fill="#8a0025"/>
+                <ellipse class="dot active" cx="300" cy="50" rx="4" ry="8" fill="#8a0025"/>
+                <ellipse class="dot" cx="500" cy="150" rx="4" ry="8" fill="#8a0025"/>
+                <ellipse class="dot" cx="700" cy="50" rx="4" ry="8" fill="#8a0025"/>
                 </svg>
+                
+                <!-- fading effect -->
+                <div class="fade-overlay fade-left"></div>
+                <div class="fade-overlay fade-right"></div>
+
                 <div class="morning item">
-                    <div class="statistic-weather-icon-morning-evening"><img src="/icons/cloudy.svg" alt="morning icon" class="morning-icon"></div>
+                    <div class="statistic-weather-icon morning-evening"><img src="/icons/cloudy.svg" alt="morning icon" class="statistic-icon"></div>
                     <div class="statistic-weather-text">
                         <span class="title-value">20°</span>
                         <span class="secondary-title">Morning</span>
                     </div>
                 </div>
                 <div class="afternoon item">
-                    <div class="statistic-weather-icon-afternoon-night"></div>
+                    <div class="statistic-weather-icon afternoon-night active"><img src="/icons/sunny.svg" alt="statistic-icon"></div>
                     <div class="statistic-weather-text">
                         <span class="title-value">34°</span>
                         <span class="secondary-title morning-label">Morning</span>
                     </div>
                 </div>
                 <div class="evening item">
-                    <div class="statistic-weather-icon-morning-evening"></div>
+                    <div class="statistic-weather-icon morning-evening"><img src="/icons/sunny cloud.svg" alt="evening icon" class="statistic-icon"></div>
                     <div class="statistic-weather-text">
                         <span class="title-value">28°</span>
                         <span class="secondary-title">Evening</span>
                     </div>
                 </div>
                 <div class="night">
-                    <div class="statistic-weather-icon-afternoon-night"></div>
+                    <div class="statistic-weather-icon afternoon-night"><img src="/icons/sunny cloud.svg" alt="evening icon" class="statistic-icon"></div>
                     <div class="statistic-weather-text">
                         <span class="title-value">22°</span>
                         <span class="secondary-title morning-label">Morning</span>

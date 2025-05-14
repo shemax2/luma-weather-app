@@ -626,22 +626,25 @@ p{
     border-right: 0.5px solid #eeeeee;
 }
 /* #region - columns of statistic-row */
-.statistic-weather-icon-morning-evening {
+.statistic-weather-icon {
     display: flex;
     justify-content: center;
     width: 50px;
-    height: 50px;
+    height: 50px; 
     border-radius: 50%;
-    border: 2px solid #eeeeee;
+    border: 2px solid #d4d4d4;
+}
+
+.statistic-weather-icon.active {
+    background-color:#1A2841;
+}
+
+.morning-evening {
     margin-top: 40px;
 }
 
-.statistic-weather-icon-afternoon-night {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.afternoon-night {
     margin-top: 10px;
-    background-color: salmon;
 }
 
 .graph {
@@ -650,6 +653,38 @@ p{
     width: 100%;
     position: absolute;
     top: 70px;
+}
+
+.dot {
+    transition: fill 0.3s ease;
+}
+
+.dot.active {
+    fill: #1A2841;  
+}
+
+.fade-overlay {
+    position: absolute;
+    top: 70px; 
+    height: 100px;
+    width: 100px;
+    z-index: 2;
+}
+
+.fade-left {
+    left: 0;
+    background: linear-gradient(to right, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+.fade-right {
+    right: 0;
+    background: linear-gradient(to left, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 .statistic-weather-text {
@@ -662,7 +697,7 @@ p{
 }
 
 /* #region icons */
-.morning-icon {
+.statistic-icon {
     max-width: 60%;
     /* max-height: 100%; */
 }
